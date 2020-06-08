@@ -1,0 +1,173 @@
+.navigation {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    .header-nav {
+        width: 100%;
+        text-align: right;
+        padding: 20px 25px;
+        a {
+            font-size: 24px;
+            color: #C4C4C4;
+        }
+    }
+    ul.menu-list {
+        width: 100%;
+        list-style-type: none;
+        li.menu-item {
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            a {
+                color: #cacaca;
+                text-decoration: none;
+                padding: 10px 25px;
+                border-bottom: 1px dotted #C4C4C4;
+                transition: 0.3s all;
+            }
+            a:hover {
+                color: #E67E22;
+                border-bottom: 1px dotted #E67E22;
+            }
+        }
+    }
+}
+
+.header {
+    margin-bottom: 20px;
+    padding: 30px;
+    @media (max-width: 576px) {
+        padding: 30px 0;
+        margin-bottom: 0px;
+    }
+    .info-user {
+        .row .col-7 {
+            padding: 0;
+        }
+        .info {
+            text-align: center;
+            h5.name {
+                font-size: 24px;
+                margin-bottom: 3px;
+            }
+            p.role {
+                font-size: 14px;
+                color: #EF5454;
+                font-weight: 700;
+                margin-bottom: 3px;
+            }
+            a {
+                color: #C4C4C4;
+                font-size: 16px;
+                text-decoration: none;
+                transition: 0.3s all;
+            }
+            a:hover {
+                color: #E67E22;
+            }
+        }
+        .bar-icon {
+            text-align: center;
+        }
+        .bar-icon i {
+            font-size: 30px;
+            cursor: pointer;
+            @media (max-width: 576px) {
+                font-size: 25px;
+            }
+        }
+    }
+}
+
+.bread-crumb {
+    margin-top: 60px;
+    @media (max-width: 576px) {
+        margin-top: 0px;
+    }
+    .text {
+        padding: 7px;
+        border-top: 1px solid #C4C4C4;
+        a {
+            font-size: 14px;
+            color: #ABABAB;
+            text-decoration: none;
+        }
+        a.active {
+            color: rgba(0, 0, 0, 0.9);
+        }
+        span {
+            font-size: 14px;
+            color: #ABABAB;
+            padding: 0 7px;
+        }
+    }
+}
+
+.event-list {
+    .title {
+        padding: 30px 0 20px 0;
+        text-align: center;
+        border-bottom: 1px solid #2141E4;
+        h3 {
+            font-weight: 700;
+            font-size: 30px;
+            @media (max-width: 576px) {
+                font-size: 24px;
+            }
+            a {
+                margin: 3px 10px 0 0;
+                color: rgba(0, 0, 0, 0.9);
+                text-decoration: none;
+                font-size: 16px;
+                transition: 0.3s all;
+            }
+        }
+    }
+    .search-form {
+        margin: 20px 0 50px;
+        input {
+            border-radius: 0;
+            border: 1px solid #000000;
+        }
+        input:focus {
+            box-shadow: none;
+            border: 1px solid #000000;
+        }
+    }
+    .projects {
+        ul {
+            list-style-type: none;
+            li {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                overflow: hidden;
+                border: 1px solid #C4C4C4;
+                background-position: center;
+                background-size: cover;
+                background-repeat: none;
+                border-radius: 6px;
+                .text {
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    background-color: rgba(0, 0, 0, 0.8);
+                    padding: 15px 15px;
+                    color: #fff;
+                    text-decoration: none;
+                    h6 {
+                        font-size: 24px;
+                        margin-bottom: 4px;
+                    }
+                    span {
+                        margin-right: 10px;
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

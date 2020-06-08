@@ -1,0 +1,281 @@
+<div class="main-wrapper">
+    <div class="navigation js--nav">
+        <div class="header-nav">
+            <a href="#" class="js--open-nav">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <a href="home-user" class="item">
+                    Trang chủ
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" (click)="logout()" class="item">
+                    Đăng xuất
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="header">
+        <div class="container-fluid">
+            <div class="info-user">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="avatar">
+                            <img class="img-fluid" src="{{avatarurl}}" alt="avatar">
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="info">
+                            <h5 class="name">{{ user.fullName }}</h5>
+                            <p class="role">Thành viên</p>
+                            <a href="edit-profile">Chỉnh sửa hồ sơ</a>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="bar-icon js--open-nav">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End div.header -->
+    <div class="bread-crumb">
+        <div class="container-fluid">
+            <div class="text">
+                <a href="home-user">Trang chủ</a>
+                <span>/</span>
+                <a href="created-event">Project đã tạo</a>
+                <span>/</span>
+                <a href="#" class="active">Tạo chi tiết</a>
+            </div>
+        </div>
+    </div>
+    <!-- End div.bread-crumb -->
+    <div class="create-event">
+        <div class="container-fluid">
+            <div class="title">
+                <span class="num-block">1</span>
+                <span class="txt">Thông tin event</span>
+                <a href="#" (click)="saveProjectInfo()" class="btn-icon">
+                    <i class="fas fa-check"></i>
+                </a>
+                <div class="clearfix"></div>
+            </div>
+            <!-- End div.title -->
+            <div class="info-event">
+                <form action="#">
+                    <div class="form-group">
+                        <label>Tên Event <span>*</span></label>
+                        <input type="text" name="name" class="form-control" [(ngModel)]="project.name" placeholder="Nhập tên">
+                    </div>
+                    <div class="form-group">
+                        <label>Vị Trí <span>*</span></label>
+                        <input type="text" name="location" class="form-control" [(ngModel)]="project.location" placeholder="Chọn vị trí">
+                    </div>
+                    <div class="form-group">
+                        <label>Thời Gian <span>*</span></label>
+                        <input type="text" readonly name="time" [(ngModel)]="project.time" placeholder="Chọn ngày" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', adaptivePosition: true }">
+                    </div>
+                    <div class="form-group">
+                        <label for="txtfileAvatarProject" class="col-sm-2 col-form-label">Ảnh đại diện</label>
+                        <div style="text-align: center;">
+                            <img class="img-fluid" style="width: 50%;" src="{{baseurl}}{{project.avatar?.url}}" alt="avatar">
+                        </div>
+                        <label class="w-100 btn btn-success mt-4 mb-3" style="cursor: pointer; font-size: 14px; " for="fileAvatarProject">
+                            Upload hình
+                        </label>
+                        <input type="file" id="fileAvatarProject" style="display:none;" (change)="handleFileAvatarProject($event.target.files)">
+                    </div>
+                </form>
+            </div>
+            <!-- End div.info-event -->
+            <div class="title">
+                <span class="num-block">2</span>
+                <span class="txt">Tạo trạm</span>
+                <a href="#" (click)="addStation()" class="btn-icon">
+                    <i class="fas fa-plus"></i>
+                </a>
+                <div class="clearfix"></div>
+            </div>
+            <!-- End div.title -->
+            <div class="create">
+                <ul class="list" *ngFor="let row of stations">
+                    <li class="item" *ngIf="row.project._id === projectId">
+                        <div class="txt">{{row.name}}</div>
+                        <div class="icon">
+                            <a href="station-detail" (click)="getStationId(row.id)" class="edit"><i class="far fa-edit"></i></a>
+                            <a href="#" (click)="deleteStation($event, row.id)" class="del"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- End div.create -->
+            <div class="title">
+                <span class="num-block">3</span>
+                <span class="txt">Tạo đội</span>
+                <a href="#" (click)="addTeam()" class="btn-icon">
+                    <i class="fas fa-plus"></i>
+                </a>
+                <div class="clearfix"></div>
+            </div>
+            <!-- End div.title -->
+            <div class="create">
+                <ul class="list" *ngFor="let row of teams">
+                    <li class="item" *ngIf="row.project._id === projectId">
+                        <div class="txt">{{row.name}}</div>
+                        <div class="icon">
+                            <a href="team-detail" (click)="getTeamId(row.id)" class="edit"><i class="far fa-edit"></i></a>
+                            <a href="#" (click)="deleteTeam($event, row.id)" class="del"><i class="fas fa-trash"></i></a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- End div.create -->
+
+            <div class="start-end">
+                <div *ngIf="project.isRunning == true">
+                    <button type="button" (click)="stopEvent()" class="btn btn-danger">Stop Event</button>
+                </div>
+                <div *ngIf="project.isRunning == false">
+                    <button type="button" (click)="startEvent()" class="btn btn-success">Start Event</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- End div.contaienr-fluid -->
+    </div>
+    <!-- End div.create-event -->
+</div>
+
+<!-- <div bsModal #teamModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">Tạo đội</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="txtTeamName" class="col-form-label">Tên đội<span style="color: red">*</span></label>
+                        <input type="text" class="form-control" id="txtTeamName" name="name" [(ngModel)]="team.name" placeholder="Nhập tên đội">
+                    </div>
+                    <div class="form-group create-team">
+                        <label>Thành viên</label>
+                        <ngx-autocomplete [searchKeyword]="'username'" class="search-user" [placeholderValue]="'Nhập username'" [entries]="users" (selectedValue)="selectEvent($event)">
+                        </ngx-autocomplete>
+                        <button type="button" class="btn btn-secondary" (click)="saveTeamDetail(team._id, selected)">Thêm user <i class="fas fa-plus"></i></button>
+                        <ul class="list-member" *ngFor="let row of teamdetails">
+                            <li class="item" *ngIf="team._id !== undefined && row.team._id === team._id">
+                                <div class="txt">{{row.user.username}}</div>
+                                <div class="icon">
+                                    <a href="#" (click)="deleteTeamDetail(row.id)" class="del"><i class="fas fa-trash"></i></a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="saveTeam()" class="btn btn-primary">Save</button>
+                <button type="button" (click)="hideModal()" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- <div bsModal #stationModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">Station</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="hideModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group row">
+                        <label for="txtName" class="col-sm-2 col-form-label">Name</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtName" name="name" [(ngModel)]="station.name" placeholder="Name">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtCommission" class="col-sm-2 col-form-label">Location</label>
+                        <div class="col-sm-10">
+                            <input type="text" (click)="openMap($event)" class="form-control" id="txtLocation" name="location" [(ngModel)]="station.location" placeholder="Location">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtCommission" class="col-sm-2 col-form-label">Time</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtTime" name="time" [(ngModel)]="station.time" placeholder="Time">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtCommission" class="col-sm-2 col-form-label">Score</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtScore" name="score" [(ngModel)]="station.score" placeholder="Score">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtfileInput" class="col-sm-2 col-form-label">Chọn hình đầu vào</label>
+                        <img class="img-fluid" src="{{baseurl}}{{station.input?.url}}" alt="avatar">
+                        <button><label for="fileInput" class="col-sm-2 col-form-label">Upload hình</label></button>
+                        <input type="file" id="fileInput" style="display:none;" (change)="handleFileInput($event.target.files)">
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtfileOutput" class="col-sm-2 col-form-label">Chọn hình đầu ra</label>
+                        <img class="img-fluid" src="{{baseurl}}{{station.output?.url}}" alt="avatar">
+                        <button><label for="fileOutput" class="col-sm-2 col-form-label">Upload hình</label></button>
+                        <input type="file" id="fileOutput" style="display:none;" (change)="handleFileOutput($event.target.files)">
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtCommission" class="col-sm-2 col-form-label">Password</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtPassword" name="password" [(ngModel)]="station.password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="txtCommission" class="col-sm-2 col-form-label">Description</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="txtDescription" name="description" [(ngModel)]="station.description" placeholder="Description">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="saveStation()" class="btn btn-primary">Save</button>
+                <button type="button" (click)="hideModal()" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #mapView="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="dialog-child-name">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 id="dialog-child-name" class="modal-title pull-left">Tạo đội</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="closeMap()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <div id="map" style="width:100%; height: 400px;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" (click)="saveMap()" class="btn btn-primary">Save</button>
+                <button type="button" (click)="closeMap()" class="btn btn-secondary">Close</button>
+            </div>
+        </div>
+    </div>
+</div> -->

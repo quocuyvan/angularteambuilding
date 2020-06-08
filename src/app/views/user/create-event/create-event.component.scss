@@ -1,0 +1,196 @@
+.navigation {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    .header-nav {
+        width: 100%;
+        text-align: right;
+        padding: 20px 25px;
+        a {
+            font-size: 24px;
+            color: #C4C4C4;
+        }
+    }
+    ul.menu-list {
+        width: 100%;
+        list-style-type: none;
+        li.menu-item {
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            a {
+                color: #cacaca;
+                text-decoration: none;
+                padding: 10px 25px;
+                border-bottom: 1px dotted #C4C4C4;
+                transition: 0.3s all;
+            }
+            a:hover {
+                color: #E67E22;
+                border-bottom: 1px dotted #E67E22;
+            }
+        }
+    }
+}
+
+.header {
+    margin-bottom: 20px;
+    padding: 30px;
+    @media (max-width: 576px) {
+        padding: 30px 0;
+        margin-bottom: 0px;
+    }
+    .info-user {
+        .row .col-7 {
+            padding: 0;
+        }
+        .info {
+            text-align: center;
+            h5.name {
+                font-size: 24px;
+                margin-bottom: 3px;
+            }
+            p.role {
+                font-size: 14px;
+                color: #EF5454;
+                font-weight: 700;
+                margin-bottom: 3px;
+            }
+            a {
+                color: #C4C4C4;
+                font-size: 16px;
+                text-decoration: none;
+                transition: 0.3s all;
+            }
+            a:hover {
+                color: #E67E22;
+            }
+        }
+        .bar-icon {
+            text-align: center;
+        }
+        .bar-icon i {
+            font-size: 30px;
+            cursor: pointer;
+            @media (max-width: 576px) {
+                font-size: 25px;
+            }
+        }
+    }
+}
+
+.bread-crumb {
+    margin-top: 60px;
+    @media (max-width: 576px) {
+        margin-top: 0px;
+    }
+    .text {
+        padding: 7px;
+        border-top: 1px solid #C4C4C4;
+        a {
+            font-size: 14px;
+            color: #ABABAB;
+            text-decoration: none;
+        }
+        a.active {
+            color: rgba(0, 0, 0, 0.9);
+        }
+        span {
+            font-size: 14px;
+            color: #ABABAB;
+            padding: 0 7px;
+        }
+    }
+}
+
+.create-event {
+    margin-top: 30px;
+    .title {
+        border-bottom: 2px solid rgba(33, 66, 228, 0.75);
+        .num-block {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            line-height: 60px;
+            text-align: center;
+            color: #fff;
+            background-color: rgba(33, 66, 228, 0.75);
+        }
+        .txt {
+            text-rendering: optimizeLegibility;
+            text-transform: uppercase;
+            padding-left: 20px;
+            font-weight: 700;
+            font-size: 24px;
+        }
+        .btn-icon {
+            float: right;
+            display: block;
+            margin-right: 20px;
+            line-height: 60px;
+            color: rgb(34, 156, 4, 0.75);
+            font-size: 20px;
+            transition: 0.3s all;
+        }
+        .btn-icon:hover {
+            color: rgb(34, 156, 4, 1);
+        }
+    }
+    // End title
+    .info-event {
+        form {
+            margin: 30px 0;
+            label {
+                font-size: 18px;
+                font-weight: 500;
+                span {
+                    color: red;
+                }
+            }
+            input {
+                font-size: 14px;
+            }
+            input:read-only {
+                background-color: #fff;
+            }
+        }
+    }
+    // End info-title
+    .create {
+        margin: 30px 0;
+        ul.list {
+            list-style-type: none;
+            li.item {
+                border: 1px solid #CED4DA;
+                padding: 20px;
+                margin-bottom: 30px;
+                .txt {
+                    display: inline-block;
+                    width: 80%;
+                    font-size: 16px;
+                }
+                .icon {
+                    display: inline-block;
+                    width: 20%;
+                    text-align: right;
+                    font-size: 16px;
+                    .edit {
+                        color: #2F7AEA;
+                    }
+                    .del {
+                        color: #FF0000;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+    // End create
+    .btn-create {
+        margin-bottom: 30px;
+    }
+}

@@ -1,0 +1,98 @@
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="../assets/resources/img/img-01.png" alt="IMG">
+            </div>
+
+            <form class="login100-form validate-form">
+                <span class="login100-form-title">
+                    Đăng ký
+                </span>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="email" name="email" [(ngModel)]="user.email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required #email="ngModel">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+                    <div *ngIf="email.errors.required">
+                        Vui lòng nhập email.
+                    </div>
+                    <div *ngIf="email.errors.pattern">
+                        Email phải có định dạng: example@example.com
+                    </div>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate="Username is required">
+                    <input class="input100" type="username" name="username" [(ngModel)]="user.username" placeholder="Username" required minlength="4" #username="ngModel">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+
+                <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+                    <div *ngIf="username.errors.required">
+                        Vui lòng nhập username.
+                    </div>
+                    <div *ngIf="username.errors.minlength">
+                        Username phải có ít nhất 6 ký tự.
+                    </div>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="password" name="pass" placeholder="Password" [(ngModel)]="user.password" required minlength="6" noWhitespace #password="ngModel">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <i class="fa fa-lock" aria-hidden="true"></i>
+                    </span>
+                </div>
+
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+                    <div *ngIf="password.errors.required">
+                        Vui lòng nhập mật khẩu.
+                    </div>
+                    <div *ngIf="password.errors.minlength">
+                        Mật khẩu phải có ít nhất 6 ký tự.
+                    </div>
+                    <div *ngIf="password.hasError('noWhitespaceRequired')">
+                        Không được chứa khoảng trắng
+                    </div>
+                </div>
+
+                <div class="wrap-input100 validate-input">
+                    <input class="input100" type="password" name="rePass" [(ngModel)]="user.rePassword" required placeholder="ReEnter Password" #rePassword="ngModel">
+                    <span class="focus-input100 "></span>
+                    <span class="symbol-input100 ">
+                        <i class="fa fa-lock " aria-hidden="true "></i>
+                    </span>
+                </div>
+
+                <div *ngIf="rePassword.invalid && (rePassword.dirty || rePassword.touched) " class="alert alert-danger ">
+                    <div *ngIf="rePassword.errors.required ">
+                        Vui lòng nhập mật khẩu.
+                    </div>
+
+                </div>
+
+                <div class="container-login100-form-btn ">
+                    <button (click)="onSubmit() " class="login100-form-btn ">
+                        Đăng ký
+                    </button>
+                </div>
+
+                <div class="text-center p-t-136 ">
+                    <a class="txt2 " href="login ">
+                        Bạn đã có tài khoản
+                        <i class="fas fa-long-arrow-alt-right m-l-5 " aria-hidden="true "></i>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

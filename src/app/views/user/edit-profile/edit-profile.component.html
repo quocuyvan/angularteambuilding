@@ -1,0 +1,137 @@
+<div class="main-wrapper">
+    <div class="navigation js--nav">
+        <div class="header-nav">
+            <a href="#" class="js--open-nav">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <a href="home-user" class="item">
+                    Trang chủ
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" (click)="logout()" class="item">
+                    Đăng xuất
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="header">
+        <div class="container-fluid">
+            <div class="info-user">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="avatar">
+                            <img class="img-fluid" src="{{avatarurl}}" alt="avatar">
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="info">
+                            <h5 class="name">{{ user.fullName }}</h5>
+                            <p class="role">Thành viên</p>
+                            <a href="edit-profile">Chỉnh sửa hồ sơ</a>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="bar-icon js--open-nav">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End div.header -->
+    <div class="bread-crumb">
+        <div class="container-fluid">
+            <div class="text">
+                <a href="home-user">Trang chủ</a>
+                <span>/</span>
+                <a href="created-event">Sửa profile</a>
+            </div>
+        </div>
+    </div>
+    <!-- End div.bread-crumb -->
+    <div class="profile-information">
+        <div class="container-fluid">
+            <div class="information">
+                <div class="title">
+                    <span class="num-block">-</span>
+                    <span class="txt">Overview</span>
+                    <!-- <a href="#" class="btn-icon">
+                        <i class="fas fa-user-edit"></i>
+                    </a> -->
+                    <div class="clearfix"></div>
+                </div>
+                <!-- End div.title -->
+                <div class="infor">
+                    <form action="#">
+                        <div class="avatar">
+                            <img class="img-fluid" src="{{avatarurl}}" alt="avatar">
+                            <label for="fileAvatarProject">
+                                <i class="fas fa-camera"></i>
+                            </label>
+                            <input type="file" id="fileAvatarProject" style="display:none;" (change)="handleFileAvatarUser($event.target.files)">
+                        </div>
+                        <div class="form-group">
+                            <label>Họ Tên <span>*</span></label>
+                            <input type="text" name="fullName" class="form-control" [(ngModel)]="user.fullName">
+                        </div>
+                        <div class="form-group">
+                            <label>Điện thoại <span>*</span></label>
+                            <input type="text" name="phoneNumber" class="form-control" [(ngModel)]="user.phoneNumber">
+                        </div>
+                        <div class=" form-group ">
+                            <label>Ngày sinh <span>*</span></label>
+                            <input type="text " name="dob " [(ngModel)]="user.dob " class="form-control " bsDatepicker [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY', adaptivePosition: true } ">
+                        </div>
+                        <div class="form-group ">
+                            <label>Giới tính <span>*</span></label>
+                            <select class="form-control " id="gender " name="gender " [(ngModel)]="user.gender" required>
+                                <option value="Nam">Nam</option>
+                                <option value="Nữ ">Nữ</option>
+                            </select>
+                        </div>
+                        <div class="form-group ">
+                            <label>Địa chỉ <span>*</span></label>
+                            <input type="text " name="address " class="form-control " [(ngModel)]="user.address ">
+                        </div>
+                        <div class="btn-create">
+                            <button class="btn btn-success w-100" (click)="updateProfile()">Cập nhật</button>
+                        </div>
+                    </form>
+                </div>
+                <!-- End div.infor -->
+                <div class="title ">
+                    <span class="num-block ">-</span>
+                    <span class="txt ">Đổi mật khẩu</span>
+                </div>
+                <!-- End div.title -->
+                <div class="acc-setting ">
+                    <form action="">
+                        <div class="form-group">
+                            <label>Mật khẩu cũ <span>*</span></label>
+                            <input type="text" class="form-control" placeholder="Nhập mật khẩu cũ" [(ngModel)]="oldpass" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label>Mật khẩu mới <span>*</span></label>
+                            <input type="text" class="form-control" placeholder="Nhập mật khẩu mới" [(ngModel)]="newpass" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="form-group">
+                            <label>Nhập lại mật khẩu <span>*</span></label>
+                            <input type="text" class="form-control" placeholder="Nhập lại mật khẩu mới" [(ngModel)]="repass" [ngModelOptions]="{standalone: true}">
+                        </div>
+                        <div class="btn-create">
+                            <button class="btn btn-success w-100" (click)="changePassword()">Đổi mật khẩu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End div.information -->
+        </div>
+        <!-- End div.container-fluid -->
+    </div>
+    <!-- End div.profile-information -->
+</div>

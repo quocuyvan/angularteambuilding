@@ -1,0 +1,139 @@
+<div class="main-wrapper">
+    <div class="navigation js--nav">
+        <div class="header-nav">
+            <a href="#" class="js--open-nav">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <a href="home-admin" class="item">
+                    Trang chủ
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" (click)="logout()" class="item">
+                    Đăng xuất
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="header">
+        <div class="container-fluid">
+            <div class="info-user">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="avatar">
+                            <img class="img-fluid" src="../../../../assets/resources/img/avatar.png" alt="avatar">
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="info">
+                            <h5 class="name">Văn Quốc Uy</h5>
+                            <p class="role">Administator</p>
+                            <a href="edit-profile">Chỉnh sửa hồ sơ</a>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="bar-icon js--open-nav">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End div.header -->
+    <div class="bread-crumb">
+        <div class="container-fluid">
+            <div class="text">
+                <a href="home-admin">Trang chủ</a>
+                <span>/</span>
+                <a href="management-account" class="active">Quản lý account</a>
+            </div>
+        </div>
+    </div>
+    <!-- End div.bread-crumb -->
+    <div class="management-account">
+        <div class="container-fluid">
+            <div class="title">
+                <h3>Quản lý Account</h3>
+            </div>
+            <div class="search-form">
+                <form action="#">
+                    <input type="text" name="search" class="form-control" placeholder="Tìm kiếm account" autocomplete="off" [(ngModel)]="searchText">
+                </form>
+            </div>
+            <div class="accounts-list">
+                <div class="mobile-view">
+                    <ul *ngFor="let row of users | filter:searchText">
+                        <li class="item" *ngIf="row.username != 'admin'">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div class="acc-name">
+                                        {{row.email}}
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="icon">
+                                        <a href="#" (click)="openEdit($event, row._id)" class="more-info">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </a>
+                                        <label class="switch">
+                                            <input type="checkbox" [checked]="!row.blocked" (click)="get(row._id)" >
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div bsModal #editModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Thông tin tài khoản</h5>
+                    <button type="button" (click)="hideModal()" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body modal-info">
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4">
+                            <div class="avatar">
+                                <img class="img-fluid" src="{{baseurl}}{{user.avatar.url}}" alt="avatar">
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <h6>Họ và tên:</h6>
+                            <p>{{user.fullName}}</p>
+                        </div>
+                        <div class="col-12">
+                            <h6>Email:</h6>
+                            <p>{{user.email}}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6>Giới tính:</h6>
+                            <p>{{user.gender}}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <h6>Điện thoại:</h6>
+                            <p>{{user.phoneNumber}}</p>
+                        </div>
+                        <div class="col-12">
+                            <h6>Địa chỉ:</h6>
+                            <p>{{user.address}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

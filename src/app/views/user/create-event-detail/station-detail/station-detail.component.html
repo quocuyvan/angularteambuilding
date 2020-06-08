@@ -1,0 +1,123 @@
+<div class="main-wrapper">
+    <div class="navigation js--nav">
+        <div class="header-nav">
+            <a href="#" class="js--open-nav">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <a href="home-user" class="item">
+                    Trang chủ
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" (click)="logout()" class="item">
+                    Đăng xuất
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="header">
+        <div class="container-fluid">
+            <div class="info-user">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="avatar">
+                            <img class="img-fluid" src="{{avatarurl}}" alt="avatar">
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="info">
+                            <h5 class="name">{{ user.fullName }}</h5>
+                            <p class="role">Thành viên</p>
+                            <a href="edit-profile">Chỉnh sửa hồ sơ</a>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="bar-icon js--open-nav">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End div.header -->
+    <div class="bread-crumb">
+        <div class="container-fluid">
+            <div class="text">
+                <a href="home-user">Trang chủ</a>
+                <span>/</span>
+                <a href="created-event">Project đã tạo</a>
+                <span>/</span>
+                <a href="#" class="active">Tạo chi tiết</a>
+            </div>
+        </div>
+    </div>
+    <!-- End div.bread-crumb -->
+    <div class="title">
+        <h4>Sửa thông tin trạm</h4>
+    </div>
+    <div class="form-edit-station">
+        <div class="container">
+            <form>
+                <div class="form-group row">
+                    <label for="txtName" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtName" name="name" [(ngModel)]="station.name" placeholder="Name">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtCommission" class="col-sm-2 col-form-label">Location</label>
+                    <div class="col-sm-10">
+                        <input type="text" (click)="openMap($event)" class="form-control" id="txtLocation" name="location" [(ngModel)]="station.location" placeholder="Location">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div id="map" style="height: 400px;"></div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtCommission" class="col-sm-2 col-form-label">Time</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtTime" name="time" [(ngModel)]="station.time" placeholder="Time">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtCommission" class="col-sm-2 col-form-label">Score</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtScore" name="score" [(ngModel)]="station.score" placeholder="Score">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtfileInput">Chọn hình đầu vào</label>
+                    <img class="img-fluid" src="{{baseurl}}{{station.input?.url}}" alt="avatar">
+                    <label for="fileInput" class="btn btn-secondary">Upload hình</label>
+                    <input type="file" id="fileInput" style="display:none;" (change)="handleFileInput($event.target.files)">
+                </div>
+                <div class="form-group">
+                    <label for="txtfileOutput" class="col-sm-2 col-form-label">Chọn hình đầu ra</label>
+                    <img class="img-fluid" src="{{baseurl}}{{station.output?.url}}" alt="avatar">
+                    <label for="fileOutput" class="btn btn-secondary">Upload hình</label>
+                    <input type="file" id="fileOutput" style="display:none;" (change)="handleFileOutput($event.target.files)">
+                </div>
+                <div class="form-group row">
+                    <label for="txtCommission" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtPassword" name="password" [(ngModel)]="station.password" placeholder="Password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="txtfileDescriptionz" class="col-sm-2 col-form-label">Mô tả trạm</label>
+                    <img class="img-fluid" src="{{baseurl}}{{station.descriptionz?.url}}" alt="avatar">
+                    <label for="fileDescriptionz" class="btn btn-secondary">Upload hình</label>
+                    <input type="file" id="fileDescriptionz" style="display:none;" (change)="handleFileDescriptionz($event.target.files)">
+                </div>
+            </form>
+            <div class="button">
+                <button type="button" (click)="saveStation()" class="btn btn-primary">Save</button>
+                <button type="button" (click)="back()" class="btn btn-secondary">Back</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,74 @@
+<div class="main-wrapper">
+    <div class="navigation js--nav">
+        <div class="header-nav">
+            <a href="#" class="js--open-nav">
+                <i class="fa fa-times"></i>
+            </a>
+        </div>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <a href="home-user" class="item">
+                    Trang chủ
+                </a>
+            </li>
+            <li class="menu-item">
+                <a href="#" (click)="logout()" class="item">
+                    Đăng xuất
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="header">
+        <div class="container-fluid">
+            <div class="info-user">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="avatar">
+                            <img class="img-fluid" src="{{avatarurl}}" alt="avatar">
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <div class="info">
+                            <h5 class="name">{{ user.fullName }}</h5>
+                            <p class="role">Thành viên</p>
+                            <a href="edit-profile">Chỉnh sửa hồ sơ</a>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <div class="bar-icon js--open-nav">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End div.header -->
+    <div class="block">
+        <div class="container-fluid">
+            <a href="receive-cryptogram">
+                <span>Trò chơi chính</span>
+                <i class="fas fa-play"></i>
+            </a>
+        </div>
+    </div>
+    <!-- End div.block -->
+    <div class="block">
+        <div class="container-fluid">
+            <a href="team-log" class="create">
+                <span>Lộ trình đội</span>
+                <i class="fas fa-list"></i>
+            </a>
+        </div>
+    </div>
+    <!-- End div.block -->
+    <div class="block">
+        <div class="container-fluid">
+            <a href="team-info" class="join">
+                <span>Thông tin thành viên đội</span>
+                <i class="fas fa-list"></i>
+            </a>
+        </div>
+    </div>
+    <!-- End div.block -->
+</div>
